@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+union myUnion {
+    int integer;
+    float floating;
+};
+
+int main() {
+    union myUnion data;
+
+    char choice;
+    printf("Enter 'i' for integer or 'f' for float: ");
+    scanf(" %c", &choice);
+
+    if(choice == 'i') {
+        printf("Enter an integer: ");
+        scanf("%d", &data.integer);
+        printf("You entered the integer: %d", data.integer);
+    } else if(choice == 'f') {
+        printf("Enter a float: ");
+        scanf("%f", &data.floating);
+        printf("You entered the float: %f", data.floating);
+    } else {
+        printf("Invalid choice");
+    }
+
+    return 0;
+}
