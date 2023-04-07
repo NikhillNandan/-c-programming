@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+#define MAX_SIZE 100
+
+int getAsciiSum(char str[]);
+
+int main() {
+    char str[MAX_SIZE];
+
+    printf("Enter a string: ");
+    scanf("%[^\n]", str);
+
+    int asciiSum = getAsciiSum(str);
+
+    printf("The sum of the ASCII values of all characters in the string is %d.", asciiSum);
+
+    return 0;
+}
+
+int getAsciiSum(char str[]) {
+    int sum = 0;
+    for (int i = 0; str[i] != '\0'; i++) {
+        sum += str[i];
+    }
+
+    return sum;
+}
