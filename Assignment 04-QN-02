@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+#define MAX_PLAYERS 11
+#define MAX_NAME_SIZE 50
+
+struct Player {
+    char name[MAX_NAME_SIZE];
+    int runs;
+};
+
+int main() {
+    struct Player team[MAX_PLAYERS];
+    int numPlayers;
+
+    printf("Enter number of players: ");
+    scanf("%d", &numPlayers);
+
+   
+    for (int i = 0; i < numPlayers; i++) {
+        printf("Enter details for player %d:\n", i+1);
+        printf("Name: ");
+        scanf("%s", team[i].name);
+
+        printf("Runs: ");
+        scanf("%d", &team[i].runs);
+    }
+    int totalRuns = 0;
+    for (int i = 0; i < numPlayers; i++) {
+        totalRuns += team[i].runs;
+    }
+
+    printf("\nTotal runs scored by the team: %d\n", totalRuns);
+
+    return 0;
+}
