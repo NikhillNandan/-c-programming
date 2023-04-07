@@ -1,0 +1,16 @@
+import struct
+
+RECORD_FORMAT = "<i20sf"
+
+with open("data.bin", "rb") as file;
+
+    while True:
+        record_data = file.read(struct.calcsize(RECORD_FORMAT))
+        if not record_data:
+            break
+        record = struct.unpack(RECORD_FORMAT, record_data)
+        print(f"ID: {record[0]}")
+        print(f"Name: {record[1].decode('utf-8').rstrip('\x00')}")
+        print(f"Salary: {record[2]}")
+        print()
+
