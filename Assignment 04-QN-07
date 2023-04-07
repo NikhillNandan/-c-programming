@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct student {
+    int roll_no;
+    char stud_name[50];
+    float mark1, mark2, mark3;
+    float total_marks;
+    float avg_marks;
+};
+
+int main() {
+    int n, i, j;
+    printf("Enter the number of students: ");
+    scanf("%d", &n);
+
+    struct student stu[n], temp;
+    for(i = 0; i < n; i++) {
+        printf("Enter the roll no of student %d: ", i+1);
+        scanf("%d", &stu[i].roll_no);
+
+        printf("Enter the name of student %d: ", i+1);
+        scanf("%s", stu[i].stud_name);
+
+        printf("Enter the marks of student %d in three subjects: ", i+1);
+        scanf("%f %f %f", &stu[i].mark1, &stu[i].mark2, &stu[i].mark3);
+        stu[i].total_marks = stu[i].mark1 + stu[i].mark2 + stu[i].mark3;
+        stu[i].avg_marks = stu[i].total_marks / 3;
+    }
+    for(i = 0; i < n-1; i++) {
+        for(j = i+1; j < n; j++) {
+            if(stu[i].total_marks < stu[j].total_marks) {
+                temp = stu[i];
+                stu[i] = stu[j];
+                stu[j] = temp;
+            }
+        }
+    }
+    printf("\nRoll No\tName\t\tMark1\tMark2\tMark3\tTotal\tAvg\n");
+    for(i = 0; i < n; i++) {
+        printf("%d\t%s\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\n", stu[i].roll_no, stu[i].stud_name, stu[i].mark1, stu[i].mark2, stu[i].mark3, stu[i].total_marks, stu[i].avg_marks);
+    }
+
+    return 0;
+}
