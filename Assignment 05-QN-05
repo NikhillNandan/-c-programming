@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <ctype.h>
+
+#define NUM_LETTERS 26
+
+int main() {
+    char filename[100], c;
+    int letter_counts[NUM_LETTERS] = {0};
+    FILE *in_file, *out_file;
+
+    printf("Enter the name of the file: ");
+    scanf("%s", filename);
+
+    in_file = fopen(filename, "r");
+    if (in_file == NULL) {
+        printf("Error opening file %s\n", filename);
+        return 1;
+    }
+
+    while ((c = fgetc(in_file)) != EOF) {
+        if (isalpha(c)) {
+            c = toupper(c);
+            letter_counts[c - 'A']++;
+        }
+    }
+
+    fclose(in_file);
+
+    out_file = fopen("statistics.txt", "w");
+    if (out_file == NULL) {
+        printf("Error creating file statistics.txt\n");
+        return 1;
+    }
+
+    fprintf(out_file, "Letter\tCount\n");
+    fprintf(out_file, "------\t-----\n");
+
+    for (int i = 0; i < NUM_LETTERS; i++) {
+        fprintf(out_file, "%c\t%d\n", 'A' + i, letter_counts[i]);
+    }
+
+    fclose(out_file);
+
+    return 0;
+}
