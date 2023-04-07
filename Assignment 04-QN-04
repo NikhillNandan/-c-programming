@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+#define MAX_NAME_SIZE 50
+#define MAX_CUSTOMERS 3
+
+struct Customer {
+    int accountNumber;
+    char name[MAX_NAME_SIZE];
+    float balance;
+};
+
+void printLowBalanceCustomers(struct Customer customers[]) {
+    printf("List of customers with balance < 100 Rs:\n");
+    for (int i = 0; i < MAX_CUSTOMERS; i++) {
+        if (customers[i].balance < 100) {
+            printf("Account number: %d\n", customers[i].accountNumber);
+            printf("Name: %s\n", customers[i].name);
+        }
+    }
+}
+
+int main() {
+    struct Customer customers[MAX_CUSTOMERS];
+    for (int i = 0; i < MAX_CUSTOMERS; i++) {
+        printf("Enter details for customer %d:\n", i+1);
+        printf("Account number: ");
+        scanf("%d", &customers[i].accountNumber);
+        printf("Name: ");
+        scanf("%s", customers[i].name);
+        printf("Balance: ");
+        scanf("%f", &customers[i].balance);
+    }
+
+    printLowBalanceCustomers(customers);
+
+    return 0;
+}
